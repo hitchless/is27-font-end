@@ -35,14 +35,14 @@ const lanes = await laneResponse.json();
 
 	  <!-- *************** add or delete column *************** -->
 	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
-	  	<h2 class="text-2xl text-white mb-2">add or um delete</h2>
+	  	<h2 class="text-2xl text-white mb-2">add or delete</h2>
 	  	<p class="mb-4">If you need to add a new truck, or delete an old one, or add a new driver, or delete one who has moved on ... you've come to the right place!</p>
 
 	  	<!-- ----------- truck ---------- -->
 	  	
 	  	<h3 class="text-1xl text-white mb-2">a truck</h3>
 	  	<div class="grid grid-cols-3 gap-4 p-4 pt-0 border-b-2 mb-3">
-			<form class="col-span-2 p-4" action="https://is27-api.vercel.app/api/truck/delete" method="POST">
+			<form class="col-span-2 p-4" action="http://127.0.0.1:3003/api/truck/delete?_method=DELETE" method="POST">
 	            
 	            <script type="text/javascript">
 					function truckSelector(){
@@ -60,7 +60,7 @@ const lanes = await laneResponse.json();
 
 				<input class="px-3 py-1 bg-red-400 hover:bg-red-500 text-red-900 font-bold py-2 px-4 border-b-2 border-red-600 hover:border-red-400 rounded" type="submit" value="delete" />			
 			</form>
-			<form class="" action="https://is27-api.vercel.app/api/truck/new" method="POST">
+			<form class="" action="http://127.0.0.1:3003/api/truck/new" method="POST">
 				<input class="px-3 py-1" type="hidden" id="driverID" name="driver" value="no one" />
 				<input class="px-3 py-1" type="hidden" id="statusID" name="status" value="yard" />
 				<input class="px-3 py-1 bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded mt-9 mr-7" type="submit" value="add new truck" />
@@ -71,7 +71,7 @@ const lanes = await laneResponse.json();
 
 		<h3 class="text-1xl text-white mb-2">a driver</h3>
 	  	<div class="grid grid-cols-3 gap-4 p-4 pt-0">
-			<form class="col-span-2 p-4" action="https://is27-api.vercel.app/api/driver/delete" method="POST">
+			<form class="col-span-2 p-4" action="http://127.0.0.1:3003/api/driver/delete?_method=DELETE" method="POST">
 	            
 	            <script type="text/javascript">
 					function driverSelector(){
@@ -89,7 +89,7 @@ const lanes = await laneResponse.json();
 
 				<input class="px-3 py-1 bg-red-400 hover:bg-red-500 text-red-900 font-bold py-2 px-4 border-b-2 border-red-600 hover:border-red-400 rounded" type="submit" value="delete" />			
 			</form>
-			<form class="" action="https://is27-api.vercel.app/api/driver/new" method="POST">
+			<form class="" action="http://127.0.0.1:3003/api/driver/new" method="POST">
 				<input class="px-3 py-1" type="hidden" id="driverID" name="display_name" value={(""+Math.random()).substring(2,7)} />
 				<input class="px-3 py-1 bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded mt-9 mr-7" type="submit" value="add new driver" />
 			</form>
