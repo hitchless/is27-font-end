@@ -70,7 +70,7 @@ const lanes = await laneResponse.json();
 		<!-- ----------- driver ---------- -->
 
 		<h3 class="text-1xl text-white mb-2">a driver</h3>
-	  	<div class="grid grid-cols-3 gap-4 p-4 pt-0">
+	  	<div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 pt-0">
 			<form class="col-span-2 p-4" action="http://127.0.0.1:3003/api/driver/delete?_method=DELETE" method="POST">
 	            
 	            <script type="text/javascript">
@@ -91,7 +91,7 @@ const lanes = await laneResponse.json();
 			</form>
 			<form class="" action="http://127.0.0.1:3003/api/driver/new" method="POST">
 				<input class="px-3 py-1" type="hidden" id="driverID" name="display_name" value={(""+Math.random()).substring(2,7)} />
-				<input class="px-3 py-1 bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded mt-9 mr-7" type="submit" value="add new driver" />
+				<input class="px-3 py-1 bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-auto md:px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded mt-9 mr-7" type="submit" value="add new driver" />
 			</form>
 		</div>
 
