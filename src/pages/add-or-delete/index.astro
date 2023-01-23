@@ -35,14 +35,14 @@ const lanes = await laneResponse.json();
 
 	  <!-- *************** add or delete column *************** -->
 	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
-	  	<h2 class="text-2xl text-white mb-2">add or delete</h2>
+	  	<h2 class="text-2xl text-white mb-2">add or um delete</h2>
 	  	<p class="mb-4">If you need to add a new truck, or delete an old one, or add a new driver, or delete one who has moved on ... you've come to the right place!</p>
 
 	  	<!-- ----------- truck ---------- -->
 	  	
 	  	<h3 class="text-1xl text-white mb-2">a truck</h3>
 	  	<div class="grid grid-cols-3 gap-4 p-4 pt-0 border-b-2 mb-3">
-			<form class="col-span-2 p-4" action="https://is27-api.vercel.app/api/truck/delete?_method=DELETE" method="POST">
+			<form class="col-span-2 p-4" action="https://is27-api.vercel.app/api/truck/delete" method="POST">
 	            
 	            <script type="text/javascript">
 					function truckSelector(){
@@ -71,7 +71,7 @@ const lanes = await laneResponse.json();
 
 		<h3 class="text-1xl text-white mb-2">a driver</h3>
 	  	<div class="grid grid-cols-3 gap-4 p-4 pt-0">
-			<form class="col-span-2 p-4" action="https://is27-api.vercel.app/api/driver/delete?_method=DELETE" method="POST">
+			<form class="col-span-2 p-4" action="https://is27-api.vercel.app/api/driver/delete" method="POST">
 	            
 	            <script type="text/javascript">
 					function driverSelector(){
