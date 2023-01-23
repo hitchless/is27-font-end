@@ -27,8 +27,8 @@ const lanes = await laneResponse.json();
 	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
 	  	<h2 class="text-2xl text-white mb-2">all trucks</h2>
 		<ul>	
-		  {data.map((truck) => (
-		    <li class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl"><i class="fa-solid fa-truck"></i> #<b>{truck.id}</b> | driver: <b>{truck.driver}</b> | status: <b>{truck.status}</b></li>
+		  {data.map((alltruck) => (
+		    <li class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl"><i class="fa-solid fa-truck"></i> #<b>{alltruck.id}</b> | driver: <b>{alltruck.driver}</b> | status: <b>{alltruck.status}</b></li>
 		  ))}
 		</ul>
 	  </div>
