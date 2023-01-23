@@ -21,24 +21,24 @@ Also, again due to lack of time, I have only built out the CRUD operations for t
 ## Endpoints
 /* truck routes */
 
-app.get('/api/trucks', db.getTrucks)
-app.post('/api/truck/new', db.createTruck)
-app.post('/api/truck/update', db.updateTruck)
-app.delete('/api/truck/delete', db.deleteTruck)
+- app.get('/api/trucks', db.getTrucks)
+- app.post('/api/truck/new', db.createTruck)
+- app.post('/api/truck/update', db.updateTruck)
+- app.delete('/api/truck/delete', db.deleteTruck)
 
 /* driver routes */
 
-app.get('/api/drivers', db.getAllDrivers)
-app.post('/api/driver/new', db.createDriver)
-app.post('/api/driver/update', db.updateDriver)
-app.delete('/api/driver/delete', db.deleteDriver)
+- app.get('/api/drivers', db.getAllDrivers)
+- app.post('/api/driver/new', db.createDriver)
+- app.post('/api/driver/update', db.updateDriver)
+- app.delete('/api/driver/delete', db.deleteDriver)
 
 /* lane routes */
 
-app.get('/api/lanes', db.getLanes)
-app.post('/api/lane/new', db.createLane)
-app.post('/api/lane/update', db.updateLane)
-app.delete('/api/lane/delete', db.deleteLane)
+- app.get('/api/lanes', db.getLanes)
+- app.post('/api/lane/new', db.createLane)
+- app.post('/api/lane/update', db.updateLane)
+- app.delete('/api/lane/delete', db.deleteLane)
 ## Authors
 
 - Jonny Miller
