@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+const response = await fetch('http://localhost:3003/api/trucks');
+const data = await response.json();
+
+const yardTrucks = data.filter(theTrucks => theTrucks.status === 'yard')
+const loadingTrucks = data.filter(theTrucks => theTrucks.status === 'loading')
+const outboundTrucks = data.filter(theTrucks => theTrucks.status === 'outbound')
+const inboundTrucks = data.filter(theTrucks => theTrucks.status === 'inbound')
+const maintenanceTrucks = data.filter(theTrucks => theTrucks.status === 'maintenance')
+---
+
+<Layout title="BCM Deliveries - Status Board">
+
+	<button class="bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded ml-4"><a href="/update">edit trucks</a></button>
+
+	<button class="bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded ml-4"><a href="/add-or-delete">add/delete</a></button>
+
+	<div class="grid grid-cols-5 gap-4 p-4">
+
+	  <!-- *************** yard column *************** -->
+	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
+	  	<h2 class="text-2xl text-white mb-2">yard</h2>
+		<ul>	
+		  {yardTrucks.map((truck) => (
+		    <li class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl"><i class="fa-solid fa-truck"></i> #{truck.id}</li>
+		  ))}
+		</ul>
+	  </div>
+
+	  <!-- *************** loading column *************** -->
+	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
+	  	<h2 class="text-2xl text-white mb-2">loading</h2>
+	  	<ul>	
+		  {loadingTrucks.map((truck) => (
+		    <li class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl"><i class="fa-solid fa-truck"></i> #{truck.id} - {truck.driver}</li>
+		  ))}
+		</ul>
+	  </div>
+
+	  <!-- *************** outbound column *************** -->
+	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
+	  	<h2 class="text-2xl text-white mb-2">outbound</h2>
+	  	<ul>	
+		  {outboundTrucks.map((truck) => (
+		    <li class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl"><i class="fa-solid fa-truck"></i> #{truck.id} - {truck.driver}</li>
+		  ))}
+		</ul>
+	  </div>
+
+	  <!-- *************** inbound column *************** -->
+	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
+	  	<h2 class="text-2xl text-white mb-2">inbound</h2>
+	  	<ul>	
+		  {inboundTrucks.map((truck) => (
+		    <li class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl"><i class="fa-solid fa-truck"></i> #{truck.id} - {truck.driver}</li>
+		  ))}
+		</ul>
+	  </div>
+
+	  <!-- *************** maintenance column *************** -->
+	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
+	  	<h2 class="text-2xl text-white mb-2">maintenance</h2>
+	  	<ul>	
+		  {maintenanceTrucks.map((truck) => (
+		    <li class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl"><i class="fa-solid fa-truck"></i> #{truck.id} - {truck.driver}</li>
+		  ))}
+		</ul>
+	  </div>
+
+	</div>
+	
+</Layout>
+
+

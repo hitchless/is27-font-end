@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+
+const response = await fetch('http://127.0.0.1:3003/api/trucks');
+const data = await response.json();
+
+const truckResponse = await fetch('http://127.0.0.1:3003/api/trucks');
+const trucks = await truckResponse.json();
+
+const driveResponse = await fetch('http://127.0.0.1:3003/api/drivers');
+const drivers = await driveResponse.json();
+
+const laneResponse = await fetch('http://127.0.0.1:3003/api/lanes');
+const lanes = await laneResponse.json();
+---
+
+<!-- +++++++++++TO-DO+++++++++++++++ -->
+<!--
+just create a simple form that pulls in a truck record, and then figure out how to put an edit button on it
+
+next step would be to put that in a model, or the card itself, and could use hardcoded dropdowns to set driver and status values
+
+ALSO
+
+- get mobile css figured out
+
+- clean up/refactor, convert to functions etc, remove any boilerplate I copied and pasted
+
+- check into github
+
+- connect netlify, does it work?
+
+- bonus: can I get it (the dashboard) to update realtime instead of needing a refresh? Is this async, listeners, or do I need to pull in something like Vue? I doubt I'll have time for that though
+-->
+
+<Layout title="BCM Deliveries - Update">
+
+	<button class="bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded ml-4"><a href="/">status board</a></button>
+
+	<button class="bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded ml-4"><a href="/add-or-delete">add/delete</a></button>
+
+	<div class="grid grid-cols-2 gap-4 p-4">
+
+	  <!-- *************** yard column *************** -->
+	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
+	  	<h2 class="text-2xl text-white mb-2">all trucks</h2>
+		<ul>	
+		  {data.map((truck) => (
+		    <li class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl"><i class="fa-solid fa-truck"></i> #<b>{truck.id}</b> | driver: <b>{truck.driver}</b> | status: <b>{truck.status}</b></li>
+		  ))}
+		</ul>
+	  </div>
+
+	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
+	  	<h2 class="text-2xl text-white mb-2">add or delete a driver</h2>
+	  	<p>add some instructions here</p>
+		<form class="grid grid-cols-4 gap-4 p-4"action="http://127.0.0.1:3003/api/truck/update" method="POST">
+			
+            <!-- ----------- truck ---------- -->
+            <script type="text/javascript">
+				function truckSelector(){
+					const selectedTruck = document.getElementById("truck-dropdown").value;
+					document.getElementById("idid").value = selectedTruck;
+				}
+			</script>
+            <select class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl" name="truckDropdown" id="truck-dropdown" onchange="truckSelector()" required>>
+			    <option value="">select truck</option>  
+			    {trucks.map((truck) => (
+				    <option>{truck.id}</option>
+				))}
+			</select>
+			<input class="px-3 py-1" type="hidden" id="idid" name="id" value="" />
+
+			<!-- ----------- driver ---------- -->
+			<select class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl" name="driverDropdown" id="driver-dropdown" onchange="driverSelector()" required>
+			    <option value="">select driver</option>  
+			    {drivers.map((driver) => (
+				    <option>{driver.display_name}</option>
+				))}
+			</select>			
+			<script type="text/javascript">
+				function driverSelector(){
+					const selectedDriver = document.getElementById("driver-dropdown").value;
+					document.getElementById("driveID").value = selectedDriver;
+				}
+			</script>
+			<input class="px-3 py-1" type="hidden" id="driveID" name="driver" value="" />
+
+			<!-- ----------- status ---------- -->
+			<select class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl" name="statusDropdown" id="status-dropdown" onchange="statusSelector()" required>
+			    <option value="">select status</option>  
+			    {lanes.map((lane) => (
+				    <option>{lane.status}</option>
+				))}
+			</select>			
+			<script type="text/javascript">
+				function statusSelector(){
+					const selectedStat = document.getElementById("status-dropdown").value;
+					document.getElementById("statusID").value = selectedStat;
+				}
+			</script>
+			<input class="px-3 py-1" type="hidden" id="statusID" name="status" value="" />
+
+			<input class="px-3 py-1 bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded" type="submit" value="update" />
+		</form>
+	  </div>
+
+	</div>
+	
+</Layout>
+
+

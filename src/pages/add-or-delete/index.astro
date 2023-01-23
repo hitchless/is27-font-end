@@ -1,0 +1,104 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+
+const response = await fetch('http://127.0.0.1:3003/api/trucks');
+const data = await response.json();
+
+const truckResponse = await fetch('http://127.0.0.1:3003/api/trucks');
+const trucks = await truckResponse.json();
+
+const driveResponse = await fetch('http://127.0.0.1:3003/api/drivers');
+const drivers = await driveResponse.json();
+
+const laneResponse = await fetch('http://127.0.0.1:3003/api/lanes');
+const lanes = await laneResponse.json();
+---
+
+<Layout title="BCM Deliveries - Add or Delete">
+
+	<button class="bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded ml-4"><a href="/">status board</a></button>
+
+	<button class="bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded ml-4"><a href="/update">edit trucks</a></button>
+
+	<div class="grid grid-cols-2 gap-4 p-4">
+
+	  <!-- *************** yard column *************** -->
+	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
+	  	<h2 class="text-2xl text-white mb-2">all trucks</h2>
+		<ul>	
+		  {data.map((truck) => (
+		    <li class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl"><i class="fa-solid fa-truck"></i> #<b>{truck.id}</b> | driver: <b>{truck.driver}</b> | status: <b>{truck.status}</b></li>
+		  ))}
+		</ul>
+	  </div>
+
+	  <!-- *************** add or delete column *************** -->
+	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
+	  	<h2 class="text-2xl text-white mb-2">add or delete</h2>
+	  	<p class="mb-4">If you need to add a new truck, or delete an old one, or add a new driver, or delete one who has moved on ... you've come to the right place!</p>
+
+	  	<!-- ----------- truck ---------- -->
+	  	
+	  	<h3 class="text-1xl text-white mb-2">a truck</h3>
+	  	<div class="grid grid-cols-3 gap-4 p-4 pt-0 border-b-2 mb-3">
+			<form class="col-span-2 p-4" action="http://127.0.0.1:3003/api/truck/delete?_method=DELETE" method="POST">
+	            
+	            <script type="text/javascript">
+					function truckSelector(){
+						const selectedTruck = document.getElementById("truck-dropdown").value;
+						document.getElementById("idid").value = selectedTruck;
+					}
+				</script>
+	            <select class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl m-4" name="truckDropdown" id="truck-dropdown" onchange="truckSelector()" required>>
+				    <option value="">select truck</option>  
+				    {trucks.map((truck) => (
+					    <option>{truck.id}</option>
+					))}
+				</select>
+				<input class="px-3 py-1" type="hidden" id="idid" name="id" value="" />
+
+				<input class="px-3 py-1 bg-red-400 hover:bg-red-500 text-red-900 font-bold py-2 px-4 border-b-2 border-red-600 hover:border-red-400 rounded" type="submit" value="delete" />			
+			</form>
+			<form class="" action="http://127.0.0.1:3003/api/truck/new" method="POST">
+				<input class="px-3 py-1" type="hidden" id="driverID" name="driver" value="no one" />
+				<input class="px-3 py-1" type="hidden" id="statusID" name="status" value="yard" />
+				<input class="px-3 py-1 bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded mt-9 mr-7" type="submit" value="add new truck" />
+			</form>
+		</div>
+
+		<!-- ----------- driver ---------- -->
+
+		<h3 class="text-1xl text-white mb-2">a driver</h3>
+	  	<div class="grid grid-cols-3 gap-4 p-4 pt-0">
+			<form class="col-span-2 p-4" action="http://127.0.0.1:3003/api/driver/delete?_method=DELETE" method="POST">
+	            
+	            <script type="text/javascript">
+					function driverSelector(){
+						const selectedDriver = document.getElementById("driver-dropdown").value;
+						document.getElementById("driveID").value = selectedDriver;
+					}
+				</script>
+	            <select class="bg-slate-50 p-2 mb-4 rounded-lg shadow-xl m-4" name="driverDropdown" id="driver-dropdown" onchange="driverSelector()" required>
+				    <option value="">select driver</option>  
+				    {drivers.map((driver) => (
+					    <option>{driver.display_name}</option>
+					))}
+				</select>
+				<input class="px-3 py-1" type="hidden" id="driveID" name="display_name" value="" />
+
+				<input class="px-3 py-1 bg-red-400 hover:bg-red-500 text-red-900 font-bold py-2 px-4 border-b-2 border-red-600 hover:border-red-400 rounded" type="submit" value="delete" />			
+			</form>
+			<form class="" action="http://127.0.0.1:3003/api/driver/new" method="POST">
+				<input class="px-3 py-1" type="hidden" id="driverID" name="display_name" value={(""+Math.random()).substring(2,7)} />
+				<input class="px-3 py-1 bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded mt-9 mr-7" type="submit" value="add new driver" />
+			</form>
+		</div>
+
+	  </div>
+
+	</div>
+	
+</Layout>
+
+
