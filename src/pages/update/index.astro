@@ -15,25 +15,6 @@ const laneResponse = await fetch('https://is27-api.vercel.app/api/lanes');
 const lanes = await laneResponse.json();
 ---
 
-<!-- +++++++++++TO-DO+++++++++++++++ -->
-<!--
-just create a simple form that pulls in a truck record, and then figure out how to put an edit button on it
-
-next step would be to put that in a model, or the card itself, and could use hardcoded dropdowns to set driver and status values
-
-ALSO
-
-- get mobile css figured out
-
-- clean up/refactor, convert to functions etc, remove any boilerplate I copied and pasted
-
-- check into github
-
-- connect netlify, does it work?
-
-- bonus: can I get it (the dashboard) to update realtime instead of needing a refresh? Is this async, listeners, or do I need to pull in something like Vue? I doubt I'll have time for that though
--->
-
 <Layout title="BCM Deliveries - Update">
 
 	<button class="bg-lime-400 hover:bg-lime-500 text-lime-900 font-bold py-2 px-4 border-b-2 border-lime-600 hover:border-lime-400 rounded ml-4"><a href="/">status board</a></button>
@@ -55,7 +36,7 @@ ALSO
 	  <div class="bg-gradient-to-b from-cyan-500 to-blue-500 rounded-lg shadow-xl p-3">
 	  	<h2 class="text-2xl text-white mb-2">add or delete a driver</h2>
 	  	<p>add some instructions here</p>
-		<form class="grid grid-cols-4 gap-4 p-4"action="http://127.0.0.1:3003/api/truck/update" method="POST">
+		<form class="grid grid-cols-4 gap-4 p-4"action="https://is27-api.vercel.app/api/truck/update" method="POST">
 			
             <!-- ----------- truck ---------- -->
             <script type="text/javascript">
