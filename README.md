@@ -1,50 +1,44 @@
-# Welcome to [Astro](https://astro.build)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
+# IS27 Full Stack Developer - Technical Assignment
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Build a simple web application that tracks and manages delivery trucks as described in the story provided below.
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+## Notes
 
+As far as I can tell, from monitoring the DB, everything (the buttons) is actually working totally error free ... BUT I did not learn until a few hours ago that Vercel is incredibly slow to read the data back. And by slow I mean hours :( I guess that's what you get for free. You can confirm that the CRUD is working by hitting the GET endpoints in the browser, and reviewing the JSON data.
 
-## 🚀 Project Structure
+Another thing I'd like to mention is that I'm very aware that this could be a lot slicker from a UX perspective, however time was very limited so I approached it from an MVP perspective. While it would be clunky, if that was for a real client it would actually be useful in the field, right now, and could then be continuosly improved on. The next major sprint could probably be completed in a week or so. Drag/drop functionality would be high on the list.
 
-Inside of your Astro project, you'll see the following folders and files:
+Also, again due to lack of time, I have only built out the CRUD operations for two of the three tables.
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Links
+- Back-end Compontent (Node and Express) cloud source control repository: https://github.com/hitchless/is27-api
+- Back-end Compontent Public URL: https://is27-api.vercel.app/ (append this to the start of the end points to get the actual endpoint URLS)
+- Front-end Compontent (Astro and Tailwind CSS) cloud source control repository: https://github.com/hitchless/is27-font-end
+- Front-end Compontent Public URL: https://is27-font-end.vercel.app/ 
+- Database Compontent: https://supabase.com/ (Postgres)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Endpoints
+/* truck routes */
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- app.get('/api/trucks', db.getTrucks)
+- app.post('/api/truck/new', db.createTruck)
+- app.post('/api/truck/update', db.updateTruck)
+- app.delete('/api/truck/delete', db.deleteTruck)
 
-Any static assets, like images, can be placed in the `public/` directory.
+/* driver routes */
 
-## 🧞 Commands
+- app.get('/api/drivers', db.getAllDrivers)
+- app.post('/api/driver/new', db.createDriver)
+- app.post('/api/driver/update', db.updateDriver)
+- app.delete('/api/driver/delete', db.deleteDriver)
 
-All commands are run from the root of the project, from a terminal:
+/* lane routes */
 
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
+- app.get('/api/lanes', db.getLanes)
+- app.post('/api/lane/new', db.createLane)
+- app.post('/api/lane/update', db.updateLane)
+- app.delete('/api/lane/delete', db.deleteLane)
+## Authors
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Jonny Miller
